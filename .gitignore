@@ -57,4 +57,9 @@ local_settings.py
 .env
 db.sqlite3
 
+.vscode
+
+### Custom Ignores ###
 tmp/
+urlsnap/core/volumes.py
+urlsnap/static/

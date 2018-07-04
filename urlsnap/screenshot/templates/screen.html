@@ -1,0 +1,12 @@
+<div style="text-align:center;">
+    <h3>URL SNAP</h3>
+
+    <form action="/" method="POST">
+        {% csrf_token %}
+        <input type="text" help="Put URL here..." name="URL">
+    </form>
+    {% if link %}
+        <a href="/static/{{link}}">/static/{{link}}</a> 
+    {% endif %}
+</div>
+
