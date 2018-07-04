@@ -1,12 +1,110 @@
-<div style="text-align:center;">
-    <h3>URL SNAP</h3>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:500i" rel="stylesheet">
+
+<style>
+html, body {
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+.flex-container {
+    height: 80%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row {
+    width: 50%;
+}
+.flex-item {
+    background-color: tomato;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    line-height: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+.header {
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    font-size: 40px;
+    color:black;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+input {
+    height: 50px;
+    width: 100%;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 4px;
+    box-shadow: 1px 3px 2px 1px rgba(0, 0, 100, .3);
+}
+
+
+</style>
+
+<div class="topnav">
+        <a href="/local/history">History</a>
+        <div style="float: right;">
+            <a href="https://github.com/0xACED/urlsnap" target="_blank">Github</a>
+            <a href="/about">About</a>
+            <a href="login">Login</a>
+        </div>
+      </div>
+
+<div class="flex-container">
+<div class="row">
+    <div class="center">
+    <h1 class="header">URL <span style="color: orange;">SNAP</span></h1>
 
     <form action="/" method="POST">
         {% csrf_token %}
-        <input type="text" help="Put URL here..." name="URL">
+        <input type="text" placeholder="Enter URL" name="URL">
+        <!-- <button>hit me</button> -->
     </form>
     {% if link %}
-        <a href="/static/{{link}}">/static/{{link}}</a> 
+    <div style="text-align: center; margin: 40px;">
+        <a href="/static/{{link}}">View Image</a> 
+    </div>
     {% endif %}
 </div>
+</div>
+    
 
+</div>
