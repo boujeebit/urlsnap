@@ -1,6 +1,6 @@
 # URL SNAP
 
-Something Cool
+Take full size screenshots of any website and save them for later. Great for viewing potentially malicious URLs without visiting them yourself. 
 
 ## Install 
 - Instal Docker 

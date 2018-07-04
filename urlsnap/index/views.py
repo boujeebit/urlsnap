@@ -3,6 +3,7 @@ from core.volumes import static
 import docker, uuid, sys
 from django.core import serializers
 from history.models import History
+import datetime
 
 import json
 
@@ -30,7 +31,7 @@ def screen(request):
         if request.POST['URL']:
             filename = getImage(request.POST['URL'])
 
-            newhistory = {'url': request.POST['URL'], 'filename': filename}
+            newhistory = {'url': request.POST['URL'], 'filename': filename, 'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") }
 
             history.append(newhistory)
 

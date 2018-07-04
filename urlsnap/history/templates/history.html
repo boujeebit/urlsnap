@@ -3,15 +3,28 @@
 {% block title %}URLSNAP - Local History{% endblock %}
 
 {% block content %}
-Local History (Stored in session)
 
-<br>
-<br>
+<h3 style="text-align: center;">Local History (Stored in session)</h3>
 
-    {% for history in data %}
-        {{history.url}}
-        <a href="/static/{{history.filename}}">view image</a>
-        <br>
-
-    {% endfor %}
+<div class="table-wrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">URL</th>
+                <th scope="col">Image</th>
+                <th scope="col">Date/Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in data %}
+                <tr>
+                    <td>{{history.url}}</td>
+                    <td><a href="/static/{{history.filename}}">view image</a></td>
+                    <td>{{history.time}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
+
