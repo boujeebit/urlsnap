@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:500i" rel="stylesheet">
+
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+        }
+        .flex-container {
+            height: 80%;
+            padding: 0;
+            margin: 0;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .row {
+            width: 50%;
+        }
+        .flex-item {
+            background-color: tomato;
+            padding: 5px;
+            width: 20px;
+            height: 20px;
+            margin: 10px;
+            line-height: 20px;
+            color: white;
+            font-weight: bold;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .header {
+            font-family: 'Ubuntu', sans-serif;
+            text-align: center;
+            font-size: 40px;
+            color:black;
+        }
+
+        input {
+            height: 50px;
+            width: 100%;
+            font-size: 20px;
+            text-align: center;
+            border: 1px solid gray;
+            border-radius: 4px;
+            box-shadow: 1px 3px 2px 1px rgba(0, 0, 100, .3);
+        }
+
+        button {
+            height: 45px;
+            width: 100px;
+            margin: 0 15px 0 15px;
+            font-size: 13px;
+            background-color: white;
+            border: 1px solid gray;
+            border-radius: 4px;
+            box-shadow: 1px 3px 2px 1px rgba(0, 0, 100, .3);
+        }
+     </style>
+
+
+    {% block styles %}{% endblock %}
+
+    </head>
+
+    <body>
+        {% include "navbar.html" %}
+
+        {% block content %}
+        {% endblock %}
+    </body>
+
+    <script type="text/javascript">
+    </script>
+
+    {% block scripts %}{% endblock %}
+</html>

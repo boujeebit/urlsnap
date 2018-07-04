@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}URLSNAP{% endblock %}
+
+{% block content %}
+<div class="flex-container">
+    <div class="row">
+        <div class="center">
+            <h1 class="header">URL <span style="color: orange;">SNAP</span></h1>
+
+            <form action="/" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Enter URL" name="URL">
+                <div style="text-align: center; margin: 40px;">
+                <button type="submit">Get Image</button>
+                <button type="reset" value="Reset">Clear</button>
+            </div>
+            </form>
+            {% if link %}
+            <div style="text-align: center; margin: 40px;">
+                <a href="/static/{{link}}">View Image</a> 
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

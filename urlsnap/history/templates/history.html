@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}URLSNAP - Local History{% endblock %}
+
+{% block content %}
+Local History (Stored in session)
+
+<br>
+<br>
+
+    {% for history in data %}
+        {{history.url}}
+        <a href="/static/{{history.filename}}">view image</a>
+        <br>
+
+    {% endfor %}
+{% endblock %}

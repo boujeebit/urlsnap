@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from screenshot.views import screen
+from index.views import screen
+from history.views import history
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', screen, name='screen'),
+    path('local/history/', history, name='history'),
 ]

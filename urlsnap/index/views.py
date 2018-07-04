@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from core.volumes import static
 import docker, uuid, sys
+from django.core import serializers
+from history.models import History
+
+import json
 
 def getImage(URL):
     client = docker.from_env()
@@ -11,16 +15,27 @@ def getImage(URL):
 
     client.containers.run( image='urlsnap', auto_remove=True, cap_add=['SYS_ADMIN'], volumes=vols, command=URL + " " + unique_filename)
 
-    print(URL, unique_filename)
+    # print(URL, unique_filename)
     return unique_filename
-
 
 # Create your views here.
 def screen(request):
+    if 'history' in request.session:
+        history = json.loads(request.session['history'])
+        print(history)
+    else:
+        history = []
+
     if request.POST:
         if request.POST['URL']:
-            print(request.POST['URL'])
             filename = getImage(request.POST['URL'])
+
+            newhistory = {'url': request.POST['URL'], 'filename': filename}
+
+            history.append(newhistory)
+
+            request.session['history'] = json.dumps(history)
+
             return render(request, "screen.html", {'link': filename})
         else:
             return render(request, "screen.html")
