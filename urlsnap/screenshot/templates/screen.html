@@ -76,6 +76,16 @@ input {
     box-shadow: 1px 3px 2px 1px rgba(0, 0, 100, .3);
 }
 
+button {
+    height: 45px;
+    width: 100px;
+    margin: 0 15px 0 15px;
+    font-size: 13px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    box-shadow: 1px 3px 2px 1px rgba(0, 0, 100, .3);
+}
 
 </style>
 
@@ -96,7 +106,10 @@ input {
     <form action="/" method="POST">
         {% csrf_token %}
         <input type="text" placeholder="Enter URL" name="URL">
-        <!-- <button>hit me</button> -->
+        <div style="text-align: center; margin: 40px;">
+        <button type="submit" >Get Image</button>
+        <button type="reset" value="Reset">Clear</button>
+    </div>
     </form>
     {% if link %}
     <div style="text-align: center; margin: 40px;">
