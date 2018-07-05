@@ -5,6 +5,8 @@ from django.core import serializers
 from history.models import History
 import datetime
 
+from history.models import History
+
 import json
 
 def getImage(URL):
@@ -30,12 +32,18 @@ def index(request):
     if request.POST:
         if request.POST['URL']:
             filename = getImage(request.POST['URL'])
+            #For testing
+            #filename = str(uuid.uuid4()) + ".png"
 
-            newhistory = {'url': request.POST['URL'], 'filename': filename, 'time': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") }
+            if request.user.is_authenticated:
+                newhistory = History(url=request.POST['URL'], filename=filename, querytime=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                newhistory.save()
+            else:
+                newhistory = {'url': request.POST['URL'], 'filename': filename, 'querytime': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") }
 
-            history.append(newhistory)
+                history.append(newhistory)
 
-            request.session['history'] = json.dumps(history)
+                request.session['history'] = json.dumps(history)
 
             return render(request, "index.html", {'link': filename})
         else:
