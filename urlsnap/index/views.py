@@ -20,7 +20,7 @@ def getImage(URL):
     return unique_filename
 
 # Create your views here.
-def screen(request):
+def index(request):
     if 'history' in request.session:
         history = json.loads(request.session['history'])
         print(history)
@@ -37,8 +37,8 @@ def screen(request):
 
             request.session['history'] = json.dumps(history)
 
-            return render(request, "screen.html", {'link': filename})
+            return render(request, "index.html", {'link': filename})
         else:
-            return render(request, "screen.html")
+            return render(request, "index.html")
     else:
-        return render(request, "screen.html")
+        return render(request, "index.html")

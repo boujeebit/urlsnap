@@ -8,4 +8,4 @@ def history(request):
     else:
         json1_data = ''
     
-    return render(request, "history.html", {'data': json1_data})
+    return render(request, "history.html", {'logo': True, 'data': json1_data})

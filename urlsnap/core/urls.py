@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from index.views import screen
+from index.views import index
 from history.views import history
+from about.views import about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', screen, name='screen'),
+    path('', index, name='index'),
     path('local/history/', history, name='history'),
+    path('about/', about, name='about'),
 ]
