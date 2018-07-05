@@ -4,8 +4,11 @@
 
 {% block content %}
 
+{% if local %}
 <h3 style="text-align: center;">Local History (Stored in session)</h3>
-
+{% else %}
+<h3 style="text-align: center;">Account History</h3>
+{% endif %}
 <div class="table-wrapper">
     <table class="table">
         <thead>
@@ -26,5 +29,6 @@
         </tbody>
     </table>
 </div>
+
 {% endblock %}
 

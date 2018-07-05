@@ -8,9 +8,9 @@
         <div class="center">
             <h1 class="header">URL <span style="color: orange;">SNAP</span></h1>
 
-            <form action="/" method="POST">
+            <form action="/" id="form" method="POST">
                 {% csrf_token %}
-                <input type="text" placeholder="Enter URL" name="URL">
+                <input type="text" id="URL" placeholder="Enter URL" name="URL">
                 <div style="text-align: center; margin: 40px;">
                 <button type="submit">Get Image</button>
                 <button type="reset" value="Reset">Clear</button>
@@ -24,4 +24,20 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $( "#form" ).submit(function( event ) {
+        var url = addhttp($("#URL").val())
+        $("#URL").val(url)
+    });
+
+    function addhttp(url) {
+        if (!/^(f|ht)tps?:\/\//i.test(url)) {
+            url = "http://" + url;
+        }
+        return url;
+    }
+</script>
 {% endblock %}

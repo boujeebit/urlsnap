@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 from index.views import index
-from history.views import history
+from history.views import history, userHistory
 from about.views import about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
     path('', index, name='index'),
+    path('history/', userHistory, name='userHistory'),
     path('local/history/', history, name='history'),
     path('about/', about, name='about'),
 ]
