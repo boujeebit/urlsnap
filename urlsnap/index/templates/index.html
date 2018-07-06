@@ -97,7 +97,15 @@
             <div class="loader" hidden>Loading...</div>
             {% if link %}
             <div style="text-align: center; margin: 40px;">
+              {% if status == '0' %}
                 <a href="/static/{{link}}">View Image</a> 
+              {% endif %}
+              {% if status == '3' %}
+                <p>Timed Out..</p>
+              {% endif %}
+              {% if status == '2' %}
+                <p>Something went wrong. General Error.... :(</p>
+              {% endif %}
             </div>
             
             {% endif %}

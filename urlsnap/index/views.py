@@ -16,10 +16,10 @@ def getImage(URL):
 
     vols = {static: {'bind': '/home/pptruser/images', 'mode': 'rw'}}
 
-    client.containers.run( image='urlsnap', auto_remove=True, cap_add=['SYS_ADMIN'], volumes=vols, command=URL + " " + unique_filename)
+    status = client.containers.run( image='urlsnap', auto_remove=True, cap_add=['SYS_ADMIN'], volumes=vols, command=URL + " " + unique_filename)
 
     # print(URL, unique_filename)
-    return unique_filename
+    return unique_filename, status.decode("utf-8").rstrip()
 
 # Create your views here.
 def index(request):
@@ -31,21 +31,21 @@ def index(request):
 
     if request.POST:
         if request.POST['URL']:
-            filename = getImage(request.POST['URL'])
+            filename, status = getImage(request.POST['URL'])
             #For testing
             #filename = str(uuid.uuid4()) + ".png"
+            if status is '0':
+                if request.user.is_authenticated:
+                    newhistory = History(url=request.POST['URL'], filename=filename, querytime=timezone.now(), user=request.user)
+                    newhistory.save()
+                else:
+                    newhistory = {'url': request.POST['URL'], 'filename': filename, 'querytime': timezone.now() }
 
-            if request.user.is_authenticated:
-                newhistory = History(url=request.POST['URL'], filename=filename, querytime=timezone.now(), user=request.user)
-                newhistory.save()
-            else:
-                newhistory = {'url': request.POST['URL'], 'filename': filename, 'querytime': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") }
+                    history.append(newhistory)
 
-                history.append(newhistory)
+                    request.session['history'] = json.dumps(history)
 
-                request.session['history'] = json.dumps(history)
-
-            return render(request, "index.html", {'link': filename})
+            return render(request, "index.html", {'link': filename, 'status': status})
         else:
             return render(request, "index.html")
     else:
