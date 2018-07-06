@@ -14,5 +14,5 @@ def history(request):
 
 
 def userHistory(request):
-    history = History.objects.all()
+    history = History.objects.filter(user__id=request.user.id)
     return render(request, "history.html", {'local': False, 'data': history})

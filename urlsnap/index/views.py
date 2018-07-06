@@ -1,9 +1,9 @@
 from django.shortcuts import render
+from django.utils import timezone
 from core.volumes import static
 import docker, uuid, sys
 from django.core import serializers
 from history.models import History
-import datetime
 
 from history.models import History
 
@@ -36,7 +36,7 @@ def index(request):
             #filename = str(uuid.uuid4()) + ".png"
 
             if request.user.is_authenticated:
-                newhistory = History(url=request.POST['URL'], filename=filename, querytime=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                newhistory = History(url=request.POST['URL'], filename=filename, querytime=timezone.now(), user=request.user)
                 newhistory.save()
             else:
                 newhistory = {'url': request.POST['URL'], 'filename': filename, 'querytime': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") }
